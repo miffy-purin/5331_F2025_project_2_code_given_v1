@@ -11,7 +11,7 @@
 #include "zgt_tm.h"
 #include "zgt_extern.h"
 
-#define TEAM_NO      19     //insert your team number here
+#define TEAM_NO      7     //insert your team number here
  
 //modified by sharma in oct 2024 to fix handling with end all as last input + a few others
 
@@ -122,7 +122,19 @@ int zgt_tm::TxWrite(long tid, long obno, int thrNum)
   //call the write function (writetx); same as above
 
     // write your code
-    
+   pthread_t thread1;
+   struct param *nodeinfo = (struct param*)malloc(sizeof(struct param));
+   nodeinfo->tid = tid;
+   nodeinfo->obno = obno;
+   nodeinfo->Txtype = ' ';
+   nodeinfo->count = --SEQNUM[tid];
+
+   int status = pthread_create(&threadid[thrNum],NULL,writetx,(void*)nodeinfo);
+   if (status){
+     printf("ERROR : return code from pthread_create() is %d\n", status);
+     exit(-1);
+   }
+   // do we need those DEBUG, if needed i'll add them
    return(0);  // successful operation
  }
 
@@ -130,6 +142,19 @@ int zgt_tm::CommitTx(long tid, int thrNum)
  {
    
     //write your code
+   // same function as above, just change the parameter in pthread_create() to committx
+   pthread_t thread1;
+   struct param *nodeinfo = (struct param*)malloc(sizeof(struct param));
+   nodeinfo->tid = tid;
+   nodeinfo->obno = -1;
+   nodeinfo->Txtype = ' ';
+   nodeinfo->count = --SEQNUM[tid];
+
+   int status = pthread_create(&threadid[thrNum],NULL,committx,(void*)nodeinfo);
+   if (status){
+     printf("ERROR : return code from pthread_create() is %d\n", status);
+     exit(-1);
+   }
    return(0); //successful operation
 
  }
@@ -137,6 +162,19 @@ int zgt_tm::CommitTx(long tid, int thrNum)
 int zgt_tm::AbortTx(long tid, int thrNum)
  {       
     //write your code
+   // same function as above, just change the parameter in pthread_create() to committx
+   pthread_t thread1;
+   struct param *nodeinfo = (struct param*)malloc(sizeof(struct param));
+   nodeinfo->tid = tid;
+   nodeinfo->obno = -1;
+   nodeinfo->Txtype = ' ';
+   nodeinfo->count = --SEQNUM[tid];
+
+   int status = pthread_create(&threadid[thrNum],NULL,committx,(void*)nodeinfo);
+   if (status){
+     printf("ERROR : return code from pthread_create() is %d\n", status);
+     exit(-1);
+   }
    return(0);  //successful operation
  }
 
