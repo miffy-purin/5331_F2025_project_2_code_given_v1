@@ -104,7 +104,14 @@ void *readtx(void *arg){
   struct param *node = (struct param*)arg;// get tid and objno and count
 
   //do the operations for reading. Write YOUR code
-  return(0);
+  // wait until the previous transaction operation of the given Tx is completed
+  start_operation(node->tid, node->count);
+  //obtain a shared lock on object and perform read operation
+  process_read_write(node->tid, node->obno, node->count, 'S');
+  // this read operation will continue
+  finish_operation(node->tid);
+  pthread_exit(NULL); // thread exit
+  //return(0);
 }
 
 
@@ -112,14 +119,41 @@ void *writetx(void *arg){ //do the operations for writing; similar to readTx
   struct param *node = (struct param*)arg;	// struct parameter that contains
   
   //do the operations for writing; similar to readTx. Write your code
-  return(0);
+  start_operation(node->tid, node->count);
+  process_read_write(node->tid, node->obno, node->count, 'X');
+  finish_operation(node->tid);
+  pthread_exit(NULL); // thread exit
+  //return(0);
 
 }
 
 //common method to process read/write: just a useful suggestion
 
 void *process_read_write(long tid, long obno,  int count, char mode){
+  // 'S' indicates read and 'X' indicates write. The tm semaphore is
+  // held only when the table is modified and released before
+  // so that other transactions can continue the process
+  zgt_p(0);
+  zgt_tx *tx = get_tx(tid);
+  if (tx == NULL){
+    fprintf(ZGT_Sh->logfile; "Tx:%ld does not exist, operation executed on object %ld is ignored\n", tid, obno);
+    fflush(ZGT_Sh->logfile);
+    printf("Tx:%ld does not exist, operation executed on object %ld is ignored\n", tid, obno);
+    fflush(stdout);
+    zgt_v(0);
+    return(0);
+  }
+  if (tx->status == TR_ABORT){
+    // aborted transactions should not continue
+    zgt_v(0);
+    return(0);
+  }
 
+  int rc = tx->set_lock(tid, 1, obno, count, mode);
+  zgt_v(0);
+  if (rc == 0){
+    tx->perform_readWrite(tid, obno, mode);
+  }
   return(0);
 }
 
@@ -128,8 +162,11 @@ void *aborttx(void *arg)
   struct param *node = (struct param*)arg;// get tid and count  
 
   //write your code
-
-  pthread_exit(NULL);			// thread exit
+   start_operation(node->tid, node->obno);
+  do_commit_abort(node->tid, TR_ABORT);
+  finish_operation(node->tid);
+  pthread_exit(NULL);                   // thread exit
+  
 }
 
 void *committx(void *arg)
@@ -139,6 +176,9 @@ void *committx(void *arg)
   struct param *node = (struct param*)arg;// get tid and count
 
   //write your code
+  start_operation(node->tid, node->obno);
+  do_commit_abort(node->tid, TR_END);
+  finish_operation(node->tid);
   pthread_exit(NULL);			// thread exit
 }
 
@@ -151,6 +191,38 @@ void *committx(void *arg)
 void *do_commit_abort(long t, char status){
 
   // write your code
+  zgt_p(0);
+  zgt_tx *tx = get_tx(t);
+  if (tx == NULL){
+    fprintf(ZGT_Sh->logfile, "Trying to %s a Tx:%ld that does not exist\n",
+            (status == TR_END) ? "commit" : "abort", t)
+    fflush(ZGT_Sh->logfile);
+    printf("Trying to %s a Tx:%ld that does not exist\n",
+            (status == TR_END) ? "commit" : "abort", t);
+    fflush(stdout);
+    zgt_v(0);
+    return(0);
+  }
+
+  tx->status = status;   // TR_END for commit and TR_ABORT for abort
+  fprintf(ZGT_Sh->logfile, "T%ld\t \t%s\t", t, (status == TR_END) ? "commitTx" : "abortTX");
+  fflush(ZGT_Sh->logfile);
+
+  tx->free_locks();  //removes objects from the hash table and releases Tx's
+
+  if (tx->semno != -1){
+    int numWait = 0;
+    for (zgt_tx *w = ZGT_Sh->lastr; w != NULL; w = w->nextr){
+      if (w->status == TR_WAIT) numWait++;
+    }
+     for (int i = 0; i < numWait; i++){
+      zgt_v(tx->semno);
+    }
+  }
+
+  tx->remove_tx(); // remove the Tx
+  delete tx;
+  zgt_v(0);
   return(0);
 }
 
