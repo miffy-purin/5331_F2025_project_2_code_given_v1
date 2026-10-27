@@ -265,6 +265,14 @@ int zgt_tx::set_lock(long tid1, long sgno1, long obno1, int count, char lockmode
   //if successful  return(0); else -1
   
     //write your code
+  
+  // DEBUG 1: Confirm that set_lock() was entered.
+    fprintf(stderr,
+            "[DEBUG] set_lock entered: tid=%ld, obj=%ld\n",
+            tid1, obno1);
+    fflush(stderr);
+
+
   //caller holds semaphore 0, so transaction list and lock table can be examined safely
   zgt_tx *currentTx = get_tx(tid1);
 
@@ -362,64 +370,89 @@ int zgt_tx::set_lock(long tid1, long sgno1, long obno1, int count, char lockmode
       return 0;
     }
 
-    //transaction must wait for conflicting holder
+    //requested lock is held incompatibly by abother transaction
     blockingTid = blockingTx->tid;
+
+    // DEBUG 2: Show which transaction is blocking this request.
+fprintf(stderr,
+        "[DEBUG] tid=%ld blocked by tid=%ld; blocker semno=%d\n",
+        tid1, blockingTx->tid, blockingTx->semno);
+fflush(stderr);
+    
+    //register this transaction as waiting for the blocker, must happen before releasing semaphore 0
     currentTx->status = TR_WAIT;
     currentTx->sgno = sgno1;
     currentTx->obno = obno1;
     currentTx->lockmode = lockmode1;
 
-    //supplied commit/abort code signals semaphore recorded on transaction whose locks
-    //are being released so record this waiter's semaphore on blocker
+    //record that blockingTx is being waited on by tid1, existing implementation
+    //only supports one waiter per blocker
     if(blockingTx->semno != -1 && blockingTx->semno != (int)tid1)
     {
-      //provided semaphore design cannot represent two different waiters on this same blocking transaction
-      fprintf(ZGT_Sh->logfile,
-              "Error: T%ld is already associated with "
-              "another waiter\n", blockingTid);
-      fflush(ZGT_Sh->logfile);
+      fprintf(stderr, "[DEBUG] blocker %ld already has waiter %d\n", blockingTid, blockingTx->semno);
       currentTx->status = TR_ACTIVE;
       return -1;
     }
+    blockingTx->setTx_semno(blockingTid, (int)tid1);
 
-    if(blockingTx->setTx_semno(blockingTid, (int)tid1) != 0)
+    //check whether following wait for chain leads back to transaction requesting lock
+    zgt_tx *cursor = blockingTx;
+    bool deadlock = false;
+    while(cursor != NULL)
     {
-      currentTx->status = TR_ACTIVE;
+      //if the wait chain leads back to us then the cycle exists
+      if(cursor->tid == tid1)
+      {
+        deadlock = true;
+        break;
+      }
+
+      //semno stores transaction ID this transaction is waiting for because
+      //of the existing implementation
+      if(cursor->semno == -1)
+      {
+        break;
+      }
+      cursor = get_tx(cursor->semno);
+    }
+
+    //if cycle exists then abort the current transaction, do_commit_abort() aquires semaphore 0 itself
+    //so release it before calling the function
+    if(deadlock)
+    {
+      fprintf(stderr,
+              "Deadlock detected: aborting transaction %ld\n", tid1);
+      fflush(stderr);
+      zgt_v(0);
+      do_commit_abort(tid1, TR_ABORT);
+      
+      //do not access currentTx after this point, aborting the routine may have
+      //deleted the transaction object
       return -1;
     }
 
-    //release transaction-manager semaphore before sleeping
+    //no cycle detected, release semaphore 0 and wait
+    fprintf(stderr, "[DEBUG] tid=%ld going to sleep\n", tid1);
+    fflush(stderr);
     zgt_v(0);
-
-    //wait on transaction's own semaphore
     zgt_p((int)tid1);
 
-    //after waking, reacquire semaphire 0 before inspecting shared data
+    //wake up and reaquire semaphore 0
+    fprintf(stderr, "[DEBUG] tid=%ld woke up\n", tid1);
+    fflush(stderr);
     zgt_p(0);
 
-    //blocking transaction may have committed or aborted, if still exists then clear its waiter record
-    blockingTx = get_tx(blockingTid);
-    if(blockingTx != NULL && blockingTx->semno == (int)tid1)
-    {
-      blockingTx->semno = -1;
-    }
-    
-
-    //check requesting transaction still exists
     currentTx = get_tx(tid1);
     if(currentTx == NULL)
     {
       return -1;
     }
 
-    //do not proceed if transaction is no longer active
     if(currentTx->status == TR_ABORT || currentTx->status == TR_END)
     {
       return -1;
     }
 
-    //retry lock table scan, waking up doesn't guarantee that the
-    //requested lock is now available
   }
 }
 
