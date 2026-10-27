@@ -601,22 +601,20 @@ int newValue = ZGT_Sh->objarray[obno]->value;
 //simulate disk I/O delay assigned to the transaction, optime is configured by the
 //transaction manager constructor. Use usleep only if project headers and timing convention
 //specify microseconds, otherwise use supplied convention
-usleep(ZGT_Sh->optime[tid]);
+ int optime = ZGT_Sh->optime[tid];
+ //usleep(ZGT_Sh->optime[tid]);
 
-//record operation in transaction log and keep format consistent with assignment's sample logs
-fprintf(ZGT_Sh->logfile,
-      "T%ld\t%c \t%c\t%ld:%d:%d\t%c\tP\t%c\n",
-      tid,
-      tx->Txtype,
-      (lockmode == 'S') ? 'R' : 'W',
-      obno,
-      newValue,
-      ZGT_Sh->optime[tid],
-      lockmode,
-      tx->status);
+ //record operation in transaction log and keep format consistent with assignment's sample logs
+ fprintf(ZGT_Sh->logfile,
+      "T%ld\t    \t%s\t\t%ld:%d:%d\t\t%s\tGranted\t\t %c\n",
+       tid, (lockmode == 'S') ? "ReadTx" : "WriteTx", obno,
+       ZGT_Sh->objarray[obno]->value, optime,
+       (lockmode == 'S') ? "ReadLock" : "WriteLock", this->status);
 
-//flush log so record is written immediately
-fflush(ZGT_Sh->logfile);
+ //flush log so record is written immediately
+ fflush(ZGT_Sh->logfile);
+ zgt_v(0);
+ usleep(optime);
 }
 
 // routine that sets the semno in the Tx when another tx waits on it.
