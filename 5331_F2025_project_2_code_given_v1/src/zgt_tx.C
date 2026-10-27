@@ -136,7 +136,8 @@ void *process_read_write(long tid, long obno,  int count, char mode){
   zgt_p(0);
   zgt_tx *tx = get_tx(tid);
   if (tx == NULL){
-    fprintf(ZGT_Sh->logfile; "Tx:%ld does not exist, operation executed on object %ld is ignored\n", tid, obno);
+    fprintf(ZGT_Sh->logfile, 
+            "Error: Transaction %ld does not exist\n", tid);
     fflush(ZGT_Sh->logfile);
     printf("Tx:%ld does not exist, operation executed on object %ld is ignored\n", tid, obno);
     fflush(stdout);
@@ -162,10 +163,14 @@ void *aborttx(void *arg)
   struct param *node = (struct param*)arg;// get tid and count  
 
   //write your code
-   start_operation(node->tid, node->obno);
+  start_operation(node->tid, node->count);
   do_commit_abort(node->tid, TR_ABORT);
   finish_operation(node->tid);
+
+  //release allocated operation parameters
+  delete node;
   pthread_exit(NULL);                   // thread exit
+  return NULL;
   
 }
 
@@ -176,10 +181,14 @@ void *committx(void *arg)
   struct param *node = (struct param*)arg;// get tid and count
 
   //write your code
-  start_operation(node->tid, node->obno);
+  start_operation(node->tid, node->count);
   do_commit_abort(node->tid, TR_END);
   finish_operation(node->tid);
+
+  //release allocated operation parameters
+  delete node;
   pthread_exit(NULL);			// thread exit
+  return NULL;
 }
 
 //suggestion as they are very similar
@@ -195,7 +204,7 @@ void *do_commit_abort(long t, char status){
   zgt_tx *tx = get_tx(t);
   if (tx == NULL){
     fprintf(ZGT_Sh->logfile, "Trying to %s a Tx:%ld that does not exist\n",
-            (status == TR_END) ? "commit" : "abort", t)
+            (status == TR_END) ? "commit" : "abort", t);
     fflush(ZGT_Sh->logfile);
     printf("Trying to %s a Tx:%ld that does not exist\n",
             (status == TR_END) ? "commit" : "abort", t);
@@ -256,7 +265,162 @@ int zgt_tx::set_lock(long tid1, long sgno1, long obno1, int count, char lockmode
   //if successful  return(0); else -1
   
     //write your code
-  return(0);
+  //caller holds semaphore 0, so transaction list and lock table can be examined safely
+  zgt_tx *currentTx = get_tx(tid1);
+
+  //stop if transaction doesn't exist
+  if(currentTx == NULL)
+  {
+    return -1;
+  }
+
+  //doesnt't allow aborted or completed transaction to acquire any additional locks
+  if(currentTx->status == TR_ABORT || currentTx->status == TR_END)
+  {
+    return -1;
+  }
+
+  //find hash table bucket for requested object
+  int bucket = ZGT_Ht->hashing(sgno1, obno1);
+
+  //remember holder we're waiting for across semaphore calls
+  long blockingTid = -1;
+  while(true)
+  {
+    zgt_hlink *link = ZGT_Sh->head[bucket];
+    zgt_tx *blockingTx = NULL;
+    zgt_hlink *ownLock = NULL;
+
+    //inspect every lock entry in the object's hash bucket
+    while(link != NULL)
+    {
+      //only entries for the requested object and segment matter
+      if(link->obno == obno1 && link->sgno == sgno1)
+      {
+        //remember lock already held by the transaction
+        if(link->tid == tid1)
+        {
+          ownLock = link;
+        }
+        //another transaction conflicts if either lock is X
+        else if (lockmode1 == 'X' || link->lockmode == 'X')
+        {
+          blockingTx = get_tx(link->tid);
+
+          //ignore entries whose transaction no longer exists or already finished
+          if(blockingTx != NULL && blockingTx->status != TR_ABORT && blockingTx->status != TR_END)
+          {
+            break;
+          }
+
+          blockingTx = NULL;
+        }
+      }
+      link = link->next;
+    }
+
+    //if transaction already has compatible lock,
+    //reuse than inserting duplicate entries for repeated object accesses
+    if(ownLock != NULL)
+    {
+      if(ownLock->lockmode == 'X' || ownLock->lockmode == lockmode1)
+      {
+        currentTx->status = TR_ACTIVE;
+        return 0;
+      }
+
+      //allow S to X upgrade only when no other transaction hold conflicting lock the object
+      if(ownLock->lockmode == 'S' && lockmode1 == 'X' && blockingTx == NULL)
+      {
+        ownLock->lockmode = 'X';
+        currentTx->lockmode = 'X';
+        currentTx->status = TR_ACTIVE;
+        return 0;
+      }
+    }
+
+    //if no conflicting lock exists add requested lock
+    if(blockingTx == NULL)
+    {
+      int rc = ZGT_Ht->add(currentTx, sgno1, obno1, lockmode1);
+
+      //has table returns -1 if allocation fails
+      if(rc != 0)
+      {
+        fprintf(ZGT_Sh->logfile,
+                "Error: could not add lock for transaction "
+                "%ld on object %ld\n", tid1, obno1);
+        fflush(ZGT_Sh->logfile);
+        return -1;
+      }
+
+      //transaction now holds the requested lock
+      currentTx->status = TR_ACTIVE;
+      currentTx->sgno = sgno1;
+      currentTx->obno = obno1;
+      currentTx->lockmode = lockmode1;
+      return 0;
+    }
+
+    //transaction must wait for conflicting holder
+    blockingTid = blockingTx->tid;
+    currentTx->status = TR_WAIT;
+    currentTx->sgno = sgno1;
+    currentTx->obno = obno1;
+    currentTx->lockmode = lockmode1;
+
+    //supplied commit/abort code signals semaphore recorded on transaction whose locks
+    //are being released so record this waiter's semaphore on blocker
+    if(blockingTx->semno != -1 && blockingTx->semno != (int)tid1)
+    {
+      //provided semaphore design cannot represent two different waiters on this same blocking transaction
+      fprintf(ZGT_Sh->logfile,
+              "Error: T%ld is already associated with "
+              "another waiter\n", blockingTid);
+      fflush(ZGT_Sh->logfile);
+      currentTx->status = TR_ACTIVE;
+      return -1;
+    }
+
+    if(blockingTx->setTx_semno(blockingTid, (int)tid1) != 0)
+    {
+      currentTx->status = TR_ACTIVE;
+      return -1;
+    }
+
+    //release transaction-manager semaphore before sleeping
+    zgt_v(0);
+
+    //wait on transaction's own semaphore
+    zgt_p((int)tid1);
+
+    //after waking, reacquire semaphire 0 before inspecting shared data
+    zgt_p(0);
+
+    //blocking transaction may have committed or aborted, if still exists then clear its waiter record
+    blockingTx = get_tx(blockingTid);
+    if(blockingTx != NULL && blockingTx->semno == (int)tid1)
+    {
+      blockingTx->semno = -1;
+    }
+    
+
+    //check requesting transaction still exists
+    currentTx = get_tx(tid1);
+    if(currentTx == NULL)
+    {
+      return -1;
+    }
+
+    //do not proceed if transaction is no longer active
+    if(currentTx->status == TR_ABORT || currentTx->status == TR_END)
+    {
+      return -1;
+    }
+
+    //retry lock table scan, waking up doesn't guarantee that the
+    //requested lock is now available
+  }
 }
 
 int zgt_tx::free_locks()
@@ -380,6 +544,79 @@ void zgt_tx::perform_readWrite(long tid,long obno, char lockmode){
   
   //write your code
 
+//find the transaction performing the operation, the caller should have
+//already obtained the required lock
+zgt_tx *tx = get_tx(tid);
+
+//stop if transaction doesn't exist
+if(tx == NULL)
+{
+  fprintf(ZGT_Sh->logfile,
+          "Error: transaction %ld doesn't exist\n", tid);
+  fflush(ZGT_Sh->logfile);
+  return;
+}
+
+//check that the object number is within the valid range
+//objarray contains MAX_ITEMS objects, indexed from 0 to MAX_ITEMS - 1
+if(obno < 0 || obno >= MAX_ITEMS)
+{
+  fprintf(ZGT_Sh->logfile,
+          "Error: invalid obkect number %ld for transaction %ld\n", obno, tid);
+  fflush(ZGT_Sh->logfile);
+  return;
+}
+
+//do not perform operations for aborted or completed transactions
+if(tx->status == TR_ABORT || tx->status == TR_END)
+{
+  return;
+}
+
+//save object's current value before applying operation
+int oldVal = ZGT_Sh->objarray[obno]->value;
+
+//apply operation required by assignment and read decrements value
+//write increments value
+if(lockmode == 'S')
+{
+  ZGT_Sh->objarray[obno]->value--;
+}
+else if (lockmode == 'X')
+{
+  ZGT_Sh->objarray[obno]->value++;
+}
+else
+{
+  //unknown lock modes must not change the object
+  fprintf(ZGT_Sh->logfile,
+          "Error: invalid lock mode '%c' for transaction %ld\n", lockmode, tid);
+  fflush(ZGT_Sh->logfile);
+  return;
+}
+
+//save updated value for operation log 
+int newValue = ZGT_Sh->objarray[obno]->value;
+
+//simulate disk I/O delay assigned to the transaction, optime is configured by the
+//transaction manager constructor. Use usleep only if project headers and timing convention
+//specify microseconds, otherwise use supplied convention
+usleep(ZGT_Sh->optime[tid]);
+
+//record operation in transaction log and keep format consistent with assignment's sample logs
+fprintf(ZGT_Sh->logfile,
+      "T%ld\t%c \t%c\t%ld:%d:%d\t%c\tP\t%c\n",
+      tid,
+      tx->Txtype,
+      (lockmode == 'S') ? 'R' : 'W',
+      obno,
+      newValue,
+      ZGT_Sh->optime[tid],
+      lockmode,
+      tx->status);
+
+//flush log so record is written immediately
+fflush(ZGT_Sh->logfile);
 }
 
 // routine that sets the semno in the Tx when another tx waits on it.

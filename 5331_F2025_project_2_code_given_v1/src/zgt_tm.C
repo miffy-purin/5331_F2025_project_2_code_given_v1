@@ -170,7 +170,7 @@ int zgt_tm::AbortTx(long tid, int thrNum)
    nodeinfo->Txtype = ' ';
    nodeinfo->count = --SEQNUM[tid];
 
-   int status = pthread_create(&threadid[thrNum],NULL,committx,(void*)nodeinfo);
+   int status = pthread_create(&threadid[tid],NULL,aborttx,nodeinfo);
    if (status){
      printf("ERROR : return code from pthread_create() is %d\n", status);
      exit(-1);
