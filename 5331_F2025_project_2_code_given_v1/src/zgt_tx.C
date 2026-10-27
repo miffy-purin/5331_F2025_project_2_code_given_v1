@@ -214,7 +214,7 @@ void *do_commit_abort(long t, char status){
   }
 
   tx->status = status;   // TR_END for commit and TR_ABORT for abort
-  fprintf(ZGT_Sh->logfile, "T%ld\t \t%s\t", t, (status == TR_END) ? "commitTx" : "abortTX");
+  fprintf(ZGT_Sh->logfile, "T%ld\t \t%s\t", t, (status == TR_END) ? "CommitTx" : "AbortTx");
   fflush(ZGT_Sh->logfile);
 
   tx->free_locks();  //removes objects from the hash table and releases Tx's
