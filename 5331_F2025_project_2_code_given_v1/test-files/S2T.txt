@@ -13,7 +13,7 @@ write   1 2
 write   1 4
 write   1 4
 commit  1
-beginTx 2
+beginTx 2 W
 read    2 5
 write   2 5
 write   2 6
