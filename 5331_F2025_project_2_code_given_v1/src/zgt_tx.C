@@ -265,195 +265,49 @@ int zgt_tx::set_lock(long tid1, long sgno1, long obno1, int count, char lockmode
   //if successful  return(0); else -1
   
     //write your code
+   // Called with sem 0 held; returns with sem 0 held.
+  // returns 0 if the lock is granted, -1 if the Tx was aborted while waiting.
+  while (1){
+    zgt_hlink *mine = NULL;		// lock already held by this Tx on the object
+    zgt_hlink *conflict = NULL;		// a lock of another Tx that blocks us
+ 
+    // scan all lock entries for the object (several readers may hold it)
+    for (zgt_hlink *h = ZGT_Ht->find(sgno1, obno1); h != NULL; h = h->next){
+      if (h->obno != obno1 || h->sgno != sgno1) continue;
+      if (h->tid == tid1) mine = h;
+      else if ((lockmode1 == 'X' || h->lockmode == 'X') && conflict == NULL)
+        conflict = h;
+    }
+ 
+    if (mine != NULL){			// same Tx already holds it: grant
+      if (lockmode1 == 'X') mine->lockmode = 'X';   // reflect write (no real upgrade handling)
+      this->status = TR_ACTIVE;
+      this->obno = -1;
+      this->lockmode = ' ';
+      return(0);
+    }
+ 
+    if (conflict == NULL){		// free or only compatible shared locks
+      ZGT_Ht->add(this, sgno1, obno1, lockmode1);
+      this->status = TR_ACTIVE;
+      this->obno = -1;
+      this->lockmode = ' ';
+      return(0);
+    }
+ 
+    // must wait for the holding Tx; record what we wait for
+    this->status = TR_WAIT;
+    this->obno = obno1;
+    this->lockmode = lockmode1;
+    long holder = conflict->tid;
+    setTx_semno(holder, (int)holder);	// Tx k always uses semaphore k
+    zgt_v(0);				// never block holding the Tx manager
+    zgt_p((int)holder);			// wait until holder commits/aborts
+    zgt_p(0);				// re-acquire the Tx manager and retry
+ 
+    if (this->status == TR_ABORT) return(-1);
+  }
   
-  // DEBUG 1: Confirm that set_lock() was entered.
-    fprintf(stderr,
-            "[DEBUG] set_lock entered: tid=%ld, obj=%ld\n",
-            tid1, obno1);
-    fflush(stderr);
-
-
-  //caller holds semaphore 0, so transaction list and lock table can be examined safely
-  zgt_tx *currentTx = get_tx(tid1);
-
-  //stop if transaction doesn't exist
-  if(currentTx == NULL)
-  {
-    return -1;
-  }
-
-  //doesnt't allow aborted or completed transaction to acquire any additional locks
-  if(currentTx->status == TR_ABORT || currentTx->status == TR_END)
-  {
-    return -1;
-  }
-
-  //find hash table bucket for requested object
-  int bucket = ZGT_Ht->hashing(sgno1, obno1);
-
-  //remember holder we're waiting for across semaphore calls
-  long blockingTid = -1;
-  while(true)
-  {
-    zgt_hlink *link = ZGT_Sh->head[bucket];
-    zgt_tx *blockingTx = NULL;
-    zgt_hlink *ownLock = NULL;
-
-    //inspect every lock entry in the object's hash bucket
-    while(link != NULL)
-    {
-      //only entries for the requested object and segment matter
-      if(link->obno == obno1 && link->sgno == sgno1)
-      {
-        //remember lock already held by the transaction
-        if(link->tid == tid1)
-        {
-          ownLock = link;
-        }
-        //another transaction conflicts if either lock is X
-        else if (lockmode1 == 'X' || link->lockmode == 'X')
-        {
-          blockingTx = get_tx(link->tid);
-
-          //ignore entries whose transaction no longer exists or already finished
-          if(blockingTx != NULL && blockingTx->status != TR_ABORT && blockingTx->status != TR_END)
-          {
-            break;
-          }
-
-          blockingTx = NULL;
-        }
-      }
-      link = link->next;
-    }
-
-    //if transaction already has compatible lock,
-    //reuse than inserting duplicate entries for repeated object accesses
-    if(ownLock != NULL)
-    {
-      if(ownLock->lockmode == 'X' || ownLock->lockmode == lockmode1)
-      {
-        currentTx->status = TR_ACTIVE;
-        return 0;
-      }
-
-      //allow S to X upgrade only when no other transaction hold conflicting lock the object
-      if(ownLock->lockmode == 'S' && lockmode1 == 'X' && blockingTx == NULL)
-      {
-        ownLock->lockmode = 'X';
-        currentTx->lockmode = 'X';
-        currentTx->status = TR_ACTIVE;
-        return 0;
-      }
-    }
-
-    //if no conflicting lock exists add requested lock
-    if(blockingTx == NULL)
-    {
-      int rc = ZGT_Ht->add(currentTx, sgno1, obno1, lockmode1);
-
-      //has table returns -1 if allocation fails
-      if(rc != 0)
-      {
-        fprintf(ZGT_Sh->logfile,
-                "Error: could not add lock for transaction "
-                "%ld on object %ld\n", tid1, obno1);
-        fflush(ZGT_Sh->logfile);
-        return -1;
-      }
-
-      //transaction now holds the requested lock
-      currentTx->status = TR_ACTIVE;
-      currentTx->sgno = sgno1;
-      currentTx->obno = obno1;
-      currentTx->lockmode = lockmode1;
-      return 0;
-    }
-
-    //requested lock is held incompatibly by abother transaction
-    blockingTid = blockingTx->tid;
-
-    // DEBUG 2: Show which transaction is blocking this request.
-fprintf(stderr,
-        "[DEBUG] tid=%ld blocked by tid=%ld; blocker semno=%d\n",
-        tid1, blockingTx->tid, blockingTx->semno);
-fflush(stderr);
-    
-    //register this transaction as waiting for the blocker, must happen before releasing semaphore 0
-    currentTx->status = TR_WAIT;
-    currentTx->sgno = sgno1;
-    currentTx->obno = obno1;
-    currentTx->lockmode = lockmode1;
-
-    //record that blockingTx is being waited on by tid1, existing implementation
-    //only supports one waiter per blocker
-    if(blockingTx->semno != -1 && blockingTx->semno != (int)tid1)
-    {
-      fprintf(stderr, "[DEBUG] blocker %ld already has waiter %d\n", blockingTid, blockingTx->semno);
-      currentTx->status = TR_ACTIVE;
-      return -1;
-    }
-    blockingTx->setTx_semno(blockingTid, (int)tid1);
-
-    //check whether following wait for chain leads back to transaction requesting lock
-    zgt_tx *cursor = blockingTx;
-    bool deadlock = false;
-    while(cursor != NULL)
-    {
-      //if the wait chain leads back to us then the cycle exists
-      if(cursor->tid == tid1)
-      {
-        deadlock = true;
-        break;
-      }
-
-      //semno stores transaction ID this transaction is waiting for because
-      //of the existing implementation
-      if(cursor->semno == -1)
-      {
-        break;
-      }
-      cursor = get_tx(cursor->semno);
-    }
-
-    //if cycle exists then abort the current transaction, do_commit_abort() aquires semaphore 0 itself
-    //so release it before calling the function
-    if(deadlock)
-    {
-      fprintf(stderr,
-              "Deadlock detected: aborting transaction %ld\n", tid1);
-      fflush(stderr);
-      zgt_v(0);
-      do_commit_abort(tid1, TR_ABORT);
-      
-      //do not access currentTx after this point, aborting the routine may have
-      //deleted the transaction object
-      return -1;
-    }
-
-    //no cycle detected, release semaphore 0 and wait
-    fprintf(stderr, "[DEBUG] tid=%ld going to sleep\n", tid1);
-    fflush(stderr);
-    zgt_v(0);
-    zgt_p((int)tid1);
-
-    //wake up and reaquire semaphore 0
-    fprintf(stderr, "[DEBUG] tid=%ld woke up\n", tid1);
-    fflush(stderr);
-    zgt_p(0);
-
-    currentTx = get_tx(tid1);
-    if(currentTx == NULL)
-    {
-      return -1;
-    }
-
-    if(currentTx->status == TR_ABORT || currentTx->status == TR_END)
-    {
-      return -1;
-    }
-
-  }
 }
 
 int zgt_tx::free_locks()
