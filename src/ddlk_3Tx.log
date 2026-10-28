@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+TxId	Txtype	Operation	ObId:Obvalue:optime	LockType	Status		TxStatus
+T1	W 	BeginTx
+T1	    	ReadTx		1:-1:6910		ReadLock	Granted		 P
+T2	W 	BeginTx
+T2	    	ReadTx		2:-1:857		ReadLock	Granted		 P
+T3	R 	BeginTx
+T3	    	ReadTx		2:-2:4496		ReadLock	Granted		 P
+T2	 	AbortTx	2 : -2, 
+Error: Transaction 2 does not exist
+Trying to commit a Tx:2 that does not exist
+T3	    	ReadTx		2:-3:4496		ReadLock	Granted		 P
+T1	 	AbortTx	1 : -1, 
+Error: Transaction 1 does not exist
+Trying to commit a Tx:1 that does not exist
