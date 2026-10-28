@@ -27,7 +27,7 @@ File Descriptions:
 
 Division of Labor:
     Harshini worked on zgt_tm.C and half parts of zgt_tx.C. Lucia worked on the remaining parts of zgt_tx.C. We fixed each other issues. Both of them tested
-    various input files. Lucia did more of testing as Harshini faced some tecnical issues. We tries our best to coordinate with each other based on our schedules.
+    various input files. Lucia did more of testing as Harshini faced some tecnical issues. We tries our best to coordinate with each other based on our schedules. We have worked on it for three days.
 
 Logical Errors and How We Handled Them:
     Logical Error 1: After compiling, the output would always hang. It took us a lot of time to figure out where we went wrong. We referred the project description,
