@@ -22,3 +22,4 @@ T3	 	CommitTx	8 : -1, 7 : 1, 6 : 1,
 T1	 	CommitTx	3 : -1, 2 : 1, 1 : -1, 
 T5	      	ReadTx		1:-2:10368		ReadLock	Granted		 P
 T5	 	CommitTx	1 : -2, 13 : -1, 12 : -1, 11 : -1, 10 : -1, 9 : -1, 
+

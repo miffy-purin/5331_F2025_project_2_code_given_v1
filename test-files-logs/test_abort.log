@@ -15,3 +15,4 @@ T3	 	CommitTx	9 : -1, 5 : 1, 4 : -1,
 T1	      	WriteTx		7:3:18755		WriteLock	Granted		 P
 T1	      	ReadTx		6:-2:18755		ReadLock	Granted		 P
 T1	 	CommitTx	7 : 3, 6 : -2, 
+

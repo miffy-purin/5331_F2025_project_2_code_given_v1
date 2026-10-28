@@ -15,4 +15,4 @@ T1	      	ReadTx		1:-2:18755		ReadLock	Granted		 P
 T1	      	WriteTx		2:0:18755		WriteLock	Granted		 P
 T1	      	WriteTx		4:2:18755		WriteLock	Granted		 P
 T1	      	WriteTx		4:3:18755		WriteLock	Granted		 P
-T1	 	CommitTx	4 : 3, 3 : 1, 2 : 0, 1 : -2, 
+T1	 	CommitTx	4 : 3, 3 : 1, 2 : 0, 1 : -2,
