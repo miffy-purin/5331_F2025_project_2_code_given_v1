@@ -1,0 +1,4779 @@
+EXECUTION: 0
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+Tx:2 does not exist, operation executed on object 2 is ignored
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+Tx:2 does not exist, operation executed on object 1 is ignored
+Trying to commit a Tx:2 that does not exist
+Thread 1 completed with ret value: 0
+Tx:1 does not exist, operation executed on object 2 is ignored
+Thread 2 completed with ret value: 0
+Tx:1 does not exist, operation executed on object 3 is ignored
+Tx:1 does not exist, operation executed on object 4 is ignored
+Thread 3 completed with ret value: 0
+Trying to commit a Tx:1 that does not exist
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 1
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 2
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 3
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+end all
+Release all resources and exit:
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 4
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+commit 2
+Commit : 1
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 5
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+Thread 6 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 6
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 7
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 8
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+Thread 4 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+Thread 5 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 9
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+end allTx:3 does not exist, operation executed on object 9 is ignored
+
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 10
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Commit 3
+Commit : 2
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 11
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 12
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Tx:3 does not exist, operation executed on object 2 is ignored
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+commit 2
+Commit : 1
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 13
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+Thread 4 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 14
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Tx:1 does not exist, operation executed on object 2 is ignored
+Thread 2 completed with ret value: 0
+Tx:1 does not exist, operation executed on object 3 is ignored
+Thread 3 completed with ret value: 0
+Tx:1 does not exist, operation executed on object 4 is ignored
+Trying to commit a Tx:1 that does not exist
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 15
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Tx:3 does not exist, operation executed on object 9 is ignored
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 16
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+commit 2
+Commit : 1
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+Commit 3
+Commit : 2
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 17
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 18
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 19
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+commit 2
+Commit : 1
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 20
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 21
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 22
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 14
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 14
+
+finished creating BeginTx thread for Tx: 14
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+EXECUTION: 23
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 24
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 25
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Trying to commit a Tx:3 that does not exist
+Thread 0 completed with ret value: 0
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 26
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 27
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 17
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 17
+
+finished creating BeginTx thread for Tx: 17
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+EXECUTION: 28
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 29
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 30
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 2 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 9 is ignored
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 31
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 32
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 1
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 1
+
+finished creating BeginTx thread for Tx: 1
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Tx:3 does not exist, operation executed on object 2 is ignored
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+Tx:3 does not exist, operation executed on object 9 is ignored
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+Tx:3 does not exist, operation executed on object 8 is ignored
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+Trying to commit a Tx:3 that does not exist
+
+:::Hash node with Tid:2, obno:1 lockmode:S removed
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Thread 1 completed with ret value: 0
+Thread 2 completed with ret value: 0
+Thread 3 completed with ret value: 0
+
+:::Hash node with Tid:1, obno:4 lockmode:X removed
+
+:::Hash node with Tid:1, obno:3 lockmode:S removed
+
+:::Hash node with Tid:1, obno:2 lockmode:X removed
+
+:::Hash node with Tid:1, obno:1 lockmode:S removed
+Thread 4 completed with ret value: 0
+Thread 5 completed with ret value: 0
+Thread 6 completed with ret value: 0
+Thread 7 completed with ret value: 0
+Thread 8 completed with ret value: 0
+Thread 9 completed with ret value: 0
+Thread 10 completed with ret value: 0
+Thread 11 completed with ret value: 0
+Thread 12 completed with ret value: 0
+Thread 13 completed with ret value: 0
+Thread 14 completed with ret value: 0
+Thread 15 completed with ret value: 0
+Thread 16 completed with ret value: 0
+ALL threads finished their work
+Releasing mutexes and condpool
+Relasing all semaphores
+endTm completed
+
+Finished end of schedule thread: endTm
+EXECUTION: 33
+
+Initializing the TM
+
+leaving TM initialization
+log interleaved_RW.log
+Log file name:interleaved_RW.log
+
+entering openlog
+
+Given log file name: interleaved_RW.log
+leaving openlog
+BeginTx 1 W
+BeginTx : 13
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 13
+
+finished creating BeginTx thread for Tx: 13
+Read 1 1
+Read : 1 : 1
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 2
+Write : 1 : 2
+
+Read 1 3
+Read : 1 : 3
+
+
+creating TxRead thread for Tx: 1
+
+exiting TxRead thread create for Tx: 1
+Write 1 4
+Write : 1 : 4
+
+BeginTx 2 W
+BeginTx : 2
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 2
+
+finished creating BeginTx thread for Tx: 2
+Write 2 8
+Write : 2 : 8
+
+Write 2 2
+Write : 2 : 2
+
+Read 2 1
+Read : 2 : 1
+
+
+creating TxRead thread for Tx: 2
+
+exiting TxRead thread create for Tx: 2
+BeginTx 3 W
+BeginTx : 3
+
+TxType : W
+
+
+creating BeginTx thread for Tx: 3
+
+finished creating BeginTx thread for Tx: 3
+Write 3 1
+Write : 3 : 1
+
+Write 3 2
+Write : 3 : 2
+
+Write 3 9
+Write : 3 : 9
+
+Read 3 8
+Read : 3 : 8
+
+
+creating TxRead thread for Tx: 3
+
+exiting TxRead thread create for Tx: 3
+Commit 1
+Commit : 3
+
+commit 2
+Commit : 1
+
+Commit 3
+Commit : 2
+
+end all
+Release all resources and exit:
+
+
+Entering End of schedule thread with thrNum: 17
+Wait for threads and cleanup
+Thread 0 completed with ret value: 0
+
+:::Hash node with Tid:2, obno:2 lockmode:X removed
+
+:::Hash node with Tid:2, obno:8 lockmode:X removed
+Trying to commit a Tx:2 that does not exist
+
+:::Hash node with Tid:3, obno:8 lockmode:S removed
+
+:::Hash node with Tid:3, obno:9 lockmode:X removed
+
+:::Hash node with Tid:3, obno:2 lockmode:X removed
+
+:::Hash node with Tid:3, obno:1 lockmode:X removed

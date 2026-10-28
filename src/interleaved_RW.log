@@ -1,19 +1,14 @@
 ---------------------------------------------------------------------------
 TxId	Txtype	Operation	ObId:Obvalue:optime	LockType	Status		TxStatus
-T1	W 	BeginTx
-T1	    	ReadTx		1:-1:6910		ReadLock	Granted		 P
+T13	W 	BeginTx
 T2	W 	BeginTx
 T2	    	WriteTx		8:1:857		WriteLock	Granted		 P
 T3	W 	BeginTx
-T3	 	AbortTx	
-Error: Transaction 3 does not exist
-Error: Transaction 3 does not exist
-Error: Transaction 3 does not exist
-Trying to commit a Tx:3 that does not exist
+T3	    	WriteTx		1:1:4496		WriteLock	Granted		 P
 T2	    	WriteTx		2:1:857		WriteLock	Granted		 P
-T2	    	ReadTx		1:-2:857		ReadLock	Granted		 P
-T2	 	CommitTx	1 : -2, 2 : 1, 8 : 1, 
-T1	    	WriteTx		2:2:6910		WriteLock	Granted		 P
-T1	    	ReadTx		3:-1:6910		ReadLock	Granted		 P
-T1	    	WriteTx		4:1:6910		WriteLock	Granted		 P
-T1	 	CommitTx	4 : 1, 3 : -1, 2 : 2, 1 : -2, 
+T2	 	AbortTx	2 : 1, 8 : 1, 
+Trying to commit a Tx:2 that does not exist
+T3	    	WriteTx		2:2:4496		WriteLock	Granted		 P
+T3	    	WriteTx		9:1:4496		WriteLock	Granted		 P
+T3	    	ReadTx		8:0:4496		ReadLock	Granted		 P
+T3	 	CommitTx	8 : 0, 9 : 1, 2 : 2, 1 : 1, 
